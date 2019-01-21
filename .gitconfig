@@ -2,7 +2,7 @@
 	name = Luis Tacon
 	email = luis@tacon.eu
 [core]
-	excludesfile = $HOME/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [difftool "sourcetree"]
 	cmd = code -n -w -d \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -13,3 +13,11 @@
 	template = $HOME/.stCommitMsg
 [alias]
 	reset-permissions = !git diff -p -R --no-color | grep -E \"^(diff|(old|new) mode)\" --color=never | git apply
+	logline = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[pull]
+	rebase = true
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
